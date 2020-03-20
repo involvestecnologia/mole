@@ -1,4 +1,4 @@
-name: Go
+name: PR builder
 
 on:
   push:
@@ -7,6 +7,23 @@ on:
     branches: [ master ]
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Lint Go Code
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          go get -u golang.org/x/lint/golint 
+          make lint
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -16,23 +33,10 @@ jobs:
         uses: actions/setup-go@v1
         with:
           go-version: 1.13
-        id: go
-        
+      
       - name: Check out
         uses: actions/checkout@v2
-      
-      - name: Get dependencies
-        run: |
-          go get -v -t -d ./...
-          
-      - name: Lint
-        uses: actions-contrib/golangci-lint@v1
-        env:
-          GO111MODULE: on
-          GOROOT: ""
-        with:
-          golangci_lint_version: v1.23
-          
+         
       - name: Test
         run: go test ./...
         
