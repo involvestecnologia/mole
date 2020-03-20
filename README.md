@@ -1,3 +1,6 @@
+[![Coverage Status](https://coveralls.io/repos/github/involvestecnologia/mole/badge.svg)](https://coveralls.io/github/involvestecnologia/mole)
+
+
 <img src="./icon.png" width="100" height="100">  
   
 # Mole
