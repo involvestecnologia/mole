@@ -21,7 +21,8 @@ jobs:
 
       - name: Test
         run: |
-          - go test -v  ./... -covermode=count -coverprofile=./coverage/lcov.info -parallel 1
+          go get github.com/axw/gocov/gocov
+          go test -v  ./... -covermode=count -coverprofile=./coverage/lcov.info -parallel 1
       
       - name: Coveralls
         uses: coverallsapp/github-action@master
