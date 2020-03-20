@@ -1,4 +1,4 @@
-name: PR builder
+name: Quality
 
 on:
   push:
@@ -11,33 +11,40 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Set up Go 1.13
         uses: actions/setup-go@v1
         with:
           go-version: 1.13
-
-      - name: Check out
-        uses: actions/checkout@v2
 
       - name: Install golangci-lint
         run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b $(go env GOPATH)/bin v1.18.0
 
       - name: Run golangci-lint
         run: $(go env GOPATH)/bin/golangci-lint run --enable-all
-        
+      
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       
       - name: Set up Go 1.13
         uses: actions/setup-go@v1
         with:
           go-version: 1.13
-      
-      - name: Check out
-        uses: actions/checkout@v2
-         
-      - name: Test
-        run: go test ./...
-        
+          
+      - name: Run Unit tests
+        run: |
+          go test -race -covermode atomic -coverprofile=profile.cov ./...
+
+      - name: Send coverage
+        env:
+          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          GO111MODULE=off go get github.com/mattn/goveralls
+          $(go env GOPATH)/bin/goveralls -coverprofile=profile.cov -service=github
