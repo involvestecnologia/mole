@@ -22,7 +22,7 @@ jobs:
       - name: Lint Go Code
         run: |
           go get -u golang.org/x/lint/golint 
-          make lint
+          golint ./...
   test:
     name: Test
     runs-on: ubuntu-latest
