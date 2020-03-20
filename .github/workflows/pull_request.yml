@@ -27,6 +27,9 @@ jobs:
           
       - name: Lint
         uses: actions-contrib/golangci-lint@v1
+        env:
+          GO111MODULE: on
+          GOROOT: ""
         with:
           golangci_lint_version: v1.23
           
