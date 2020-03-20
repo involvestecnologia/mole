@@ -21,7 +21,6 @@ jobs:
 
       - name: Lint Go Code
         run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
           go get -u golang.org/x/lint/golint 
           make lint
   test:
