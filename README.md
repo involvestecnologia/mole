@@ -57,4 +57,41 @@ password: elastic
 
  
 
-5. 
+5. Through the Dev tools menu create a template for the oplog index:
+
+```
+PUT _template/oplog
+{
+    "index_patterns": [
+        "oplog-*"
+    ],
+    "settings": {
+        "number_of_shards": 2,
+        "number_of_replicas": 1,
+        "index.lifecycle.name": "5-day-storage-with-daily-rotation",
+        "index.lifecycle.rollover_alias": "oplog"
+    },
+    "mappings": {
+        "_source": {
+            "enabled": true
+        },
+        "properties": {
+            "timestamp": {
+                "type": "date"
+            },
+            "database": {
+                "type": "keyword"
+            },
+            "collection": {
+                "type": "keyword"
+            },
+            "operation_type": {
+                "type": "keyword"
+            },
+            "query": {
+                "type": "text"
+            }
+        }
+    }
+}
+```
