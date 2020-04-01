@@ -85,7 +85,7 @@ PUT _template/oplog
             "collection": {
                 "type": "keyword"
             },
-            "operation_type": {
+            "operation": {
                 "type": "keyword"
             },
             "query": {
