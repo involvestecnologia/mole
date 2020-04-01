@@ -94,4 +94,8 @@ PUT _template/oplog
         }
     }
 }
+
+PUT oplog-000001
+PUT oplog-000001/_aliases/oplog
+
 ```
