@@ -13,9 +13,6 @@
     },
     "notifier": {
         "url": "http://localhost/",
-        "channels": ["goa_logs"]
-    },
-    "logstash": {
-        "url": "localhost:12201"
+        "channel": "channel_name"
     }
 }
