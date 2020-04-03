@@ -100,3 +100,8 @@ PUT oplog-000001
 PUT oplog-000001/_aliases/oplog
 
 ```
+- Run the Mole application to start replication
+
+```
+go run main.go
+```
