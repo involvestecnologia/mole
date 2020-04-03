@@ -41,7 +41,7 @@ rs.initiate({
         {
             "_id": 1,
             "host": "localhost:27018",
-            "priority": 1,
+            "priority": 0,
             "votes":1
         },
         {
