@@ -1,5 +1,4 @@
 [![Coverage Status](https://goreportcard.com/badge/github.com/involvestecnologia/mole)](https://goreportcard.com/report/github.com/involvestecnologia/mole)
-[![Coverage Status](https://coveralls.io/repos/github/involvestecnologia/mole/badge.svg)](https://coveralls.io/github/involvestecnologia/mole)
 
 
 <img src="./icon.png" width="100" height="100">  
