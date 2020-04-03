@@ -12,7 +12,7 @@ type oplogReplicator struct {
 	storage     storage.Storage
 }
 
-//NewOplogReplication make a constructor of mole service
+//NewOplogReplication - Creates an instance of the replication service
 func NewOplogReplication(oplogReader OplogReader, storage storage.Storage) Replicator {
 	return &oplogReplicator{
 		oplogReader: oplogReader,
@@ -20,7 +20,7 @@ func NewOplogReplication(oplogReader OplogReader, storage storage.Storage) Repli
 	}
 }
 
-// Start
+//Start - Starts the replication process
 func (o *oplogReplicator) Start() error {
 
 	startTime, err := o.storage.StartTime()

@@ -22,6 +22,7 @@ type elasticsearch struct {
 	buffer      *bytes.Buffer
 }
 
+//Elasticsearch - Opens communication with elasticsearch
 func Elasticsearch(conf models.Elasticsearch) Storage {
 
 	cfg := elasticsearch7.Config{
@@ -44,6 +45,7 @@ func Elasticsearch(conf models.Elasticsearch) Storage {
 	}
 }
 
+//Add - Adds the record to the batch and writes it to elasticsearch when the quantity is complete
 func (e *elasticsearch) Add(oplog *models.Oplog) error {
 
 	resource, err := e.prepare(oplog)
@@ -104,6 +106,7 @@ func (e *elasticsearch) prepare(oplog *models.Oplog) (*models.OplogAnalysis, err
 	return oplogAnalysis, nil
 }
 
+//StartTime - Searches for the date of the last stored record
 func (e *elasticsearch) StartTime() (time.Time, error) {
 	var buf bytes.Buffer
 	var result models.SearchResults

@@ -16,7 +16,7 @@ type db struct {
 	conn *mongo.Client
 }
 
-//New
+//New - Opens communication with MongoDB
 func New(config models.Mongo) OplogReader {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(config.Timeout)*time.Second)
 	defer cancel()
@@ -31,6 +31,7 @@ func New(config models.Mongo) OplogReader {
 	}
 }
 
+// Read - Reads the records of the oplog collection
 func (d *db) Read(start time.Time) (*mongo.Cursor, error) {
 	opts := options.Find()
 	opts.SetCursorType(options.TailableAwait)
