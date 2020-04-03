@@ -107,3 +107,22 @@ go run main.go
 ```
 
 ## How to deploy in production ?
+
+To run the Mole application, just replace the compose parameters and execute:
+
+```
+version: '2.2'
+services:
+  mole:
+    image: involvestecnologia/mole:latest
+    container_name: mole
+    environment:
+      MONGO_URI: mongodb://localhost:27017
+      ELASTICSEARCH_HOSTS: http://localhost:9200
+      ELASTICSEARCH_USERNAME: elastic
+      ELASTICSEARCH_PASSWORD: elastic
+      ELASTICSEARCH_SOURCE: oplog
+      ELASTICSEARCH_BATCH_SIZE: 10000
+      NOTIFIER_URL: http://localhost
+      NOTIFIER_CHANNEL: channel_name
+```
