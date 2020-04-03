@@ -1,0 +1,27 @@
+name: Dockerhub
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  dockerhub:
+    name: Update
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Docker build
+        run: docker build -t involvestecnologia/mole:latest .
+
+      - name: Docker push
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: involvestecnologia/mole
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+

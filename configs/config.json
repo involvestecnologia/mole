@@ -1,0 +1,21 @@
+{
+    "app_name":"mole",
+    "mongo": {
+        "uri": "mongodb://localhost:27017",
+        "timeout": 10
+    },
+    "elasticsearch": {
+        "hosts": "http://localhost:9200",
+        "username": "elastic",
+        "password": "elastic",
+        "source": "oplog",
+        "batch_size": 1
+    },
+    "notifier": {
+        "url": "http://localhost/",
+        "channels": ["goa_logs"]
+    },
+    "logstash": {
+        "url": "localhost:12201"
+    }
+}

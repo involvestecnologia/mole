@@ -101,18 +101,35 @@ services:
     networks:
       - mole
           
-  mongodb:
+  mongo_primary:
     build:
-      context: ./mongodb
-    container_name: mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: "123456"
-      MONGO_INITDB_DATABASE: mole
-    ports:
-      - 27017:27017
-    networks:
-      - mole
+      context: ./mongo
+    hostname: mongo_primary
+    container_name: mongo_primary
+    entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal","--dbpath","/data/db","--smallfiles", "--bind_ip_all", "--port", "27017"]
+    expose:
+      - "27017"
+    network_mode: host
+          
+  mongo_secondary:
+    build:
+      context: ./mongo
+    hostname: mongo_secondary
+    container_name: mongo_secondary
+    entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal","--dbpath","/data/db","--smallfiles", "--bind_ip_all", "--port", "27018"]
+    expose:
+      - "27018"
+    network_mode: host
+          
+  mongo_arbiter:
+    build:
+      context: ./mongo
+    hostname: mongo_arbiter
+    container_name: mongo_arbiter
+    entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal","--dbpath","/data/db","--smallfiles", "--bind_ip_all", "--port", "27019"]
+    expose:
+      - "27019"
+    network_mode: host
 
 networks:
   mole:
