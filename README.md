@@ -55,18 +55,10 @@ rs.initiate({
 });
 ```
 
-- Access the kibana http://localhost:5601
-
-```
-username: elastic
-password: elastic
-```
-
-- In the menu management-> Index Lifecycle Management create a policy that stores records for 5 days and performs daily rotation.
-
- 
-
-- Through the Dev tools menu create a template for the oplog index:
+- Configure Kibana
+1. Access the link http: localhost: 5601 with the user "elastic" and the password "elastic".
+2. In the "Management -> Index Lifecycle Management" menu, create a rotation policy with the name "" 5-day-storage-with-daily-rotation ".
+3. In the "Dev Tools" menu, create a mapping for the oplog index using the command below:
 
 ```
 PUT _template/oplog
