@@ -19,13 +19,13 @@ To run the project locally you will need to perform 4 steps:
 
 To facilitate this process, I created a docker-compose that starts all this infrastructure, you will only need to activate some settings:
 
-1. In the project's root directory start the infrastructure by running the command below on the terminal:
+- In the project's root directory start the infrastructure by running the command below on the terminal:
 
 ```
 docker-compose -f deployments/development/docker-compose.yml up -d
 ```
 
-2. Access MongoDB and activate replication using the command:
+- Access MongoDB and activate replication using the command:
 
 ```
 rs.initiate({
@@ -55,18 +55,18 @@ rs.initiate({
 });
 ```
 
-3. Access the kibana http://localhost:5601
+- Access the kibana http://localhost:5601
 
 ```
 username: elastic
 password: elastic
 ```
 
-4. In the menu management-> Index Lifecycle Management create a policy that stores records for 5 days and performs daily rotation.
+- In the menu management-> Index Lifecycle Management create a policy that stores records for 5 days and performs daily rotation.
 
  
 
-5. Through the Dev tools menu create a template for the oplog index:
+- Through the Dev tools menu create a template for the oplog index:
 
 ```
 PUT _template/oplog
