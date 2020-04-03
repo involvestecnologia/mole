@@ -6,17 +6,26 @@
   
 # Mole
 
-This project was born with the objective of facilitating the analysis of the oplog, exporting the information to elasticsearch, where we can use all the visualization tools of Kibana.
+Basically the project consists of replicating information from the oplog to elasticsearch, a stack developed to analyze information, there we can analyze the oplog to identify bottlenecks in MongoDB.
 
 ## How to execute the project?
 
-1. In the project's root directory run the following command.
+To run the project locally you will need to perform 4 steps:
+
+- Run a MongoDB cluster with the replication system enabled.
+- Run an elasticsearch cluster.
+- Run Kibana.
+- Run the mole to start replicating the oplog.
+
+To facilitate this process, I created a docker-compose that starts all this infrastructure, you will only need to activate some settings:
+
+1. In the project's root directory start the infrastructure by running the command below on the terminal:
 
 ```
 docker-compose -f deployments/development/docker-compose.yml up -d
 ```
 
-2. Access MongoDB and run the command below to enable replication between nodes.
+2. Access MongoDB and activate replication using the command:
 
 ```
 rs.initiate({
