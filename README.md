@@ -8,7 +8,7 @@
 
 Basically the project consists of replicating information from the oplog to elasticsearch, a stack developed to analyze information, there we can analyze the oplog to identify bottlenecks in MongoDB.
 
-## How to execute the project?
+## How to execute the project on your local machine ?
 
 To run the project locally you will need to perform 4 steps:
 
