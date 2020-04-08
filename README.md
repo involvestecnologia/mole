@@ -122,6 +122,5 @@ services:
       ELASTICSEARCH_PASSWORD: elastic
       ELASTICSEARCH_SOURCE: oplog
       ELASTICSEARCH_BATCH_SIZE: 10000
-      NOTIFIER_URL: http://localhost
-      NOTIFIER_CHANNEL: channel_name
+      LOGSTASH_URL: localhost:12201
 ```
