@@ -8,4 +8,5 @@ RUN apk add ca-certificates
 WORKDIR /app
 COPY --from=builder /app/configs /app/configs
 COPY --from=builder /app/main /app/main
+EXPOSE 8080
 ENTRYPOINT ["./main"]
