@@ -13,5 +13,5 @@ type OplogReader interface {
 
 //Replicator - Starts the replication process
 type Replicator interface {
-	Start() error
+	Start()
 }

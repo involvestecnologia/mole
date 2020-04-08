@@ -11,6 +11,7 @@ import (
 
 	elasticsearch7 "github.com/elastic/go-elasticsearch/v7"
 	"github.com/involvestecnologia/mole/errors"
+	"github.com/involvestecnologia/mole/internal/collectors"
 	"github.com/involvestecnologia/mole/models"
 )
 
@@ -20,10 +21,11 @@ type elasticsearch struct {
 	batchSize   int
 	currentSize int
 	buffer      *bytes.Buffer
+	collector   collectors.StorageCollector
 }
 
 //Elasticsearch - Opens communication with elasticsearch
-func Elasticsearch(conf models.Elasticsearch) Storage {
+func Elasticsearch(conf models.Elasticsearch, collector collectors.StorageCollector) Storage {
 
 	cfg := elasticsearch7.Config{
 		Addresses: []string{conf.Hosts},
@@ -42,6 +44,7 @@ func Elasticsearch(conf models.Elasticsearch) Storage {
 		batchSize:   conf.BatchSize,
 		currentSize: 0,
 		buffer:      &bytes.Buffer{},
+		collector:   collector,
 	}
 }
 
@@ -80,6 +83,7 @@ func (e *elasticsearch) Add(oplog *models.Oplog) error {
 
 		e.buffer.Reset()
 		e.currentSize = 0
+		e.collector.IncreasesStorageMetrics(e.batchSize)
 	}
 
 	return nil
