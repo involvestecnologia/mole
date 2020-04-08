@@ -11,8 +11,7 @@
         "source": "oplog",
         "batch_size": 1
     },
-    "notifier": {
-        "url": "http://localhost/",
-        "channel": "channel_name"
+    "logstash": {	
+        "url": "localhost:12201"	
     }
 }

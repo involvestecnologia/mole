@@ -4,7 +4,7 @@ type ReadConfig struct {
 	AppName       string        `mapstructure:"app_name"`
 	Mongo         Mongo         `mapstructure:"mongo"`
 	Elasticsearch Elasticsearch `mapstructure:"elasticsearch"`
-	Notifier      Notifier      `mapstructure:"notifier"`
+	Logstash      Logstash      `mapstructure:"logstash"`
 }
 
 type Elasticsearch struct {
@@ -20,7 +20,6 @@ type Mongo struct {
 	Timeout int    `mapstructure:"timeout"`
 }
 
-type Notifier struct {
-	URL     string `mapstructure:"url"`
-	Channel string `mapstructure:"channel"`
+type Logstash struct {
+	URL string `mapstructure:"url"`
 }
