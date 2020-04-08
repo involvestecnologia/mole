@@ -17,7 +17,12 @@ type oplogReplicator struct {
 }
 
 //NewOplogReplication - Creates an instance of the replication service
-func NewOplogReplication(oplogReader OplogReader, storage storage.Storage, collector collectors.OplogCollector, log *logrus.Logger) Replicator {
+func NewOplogReplication(
+	oplogReader OplogReader,
+	storage storage.Storage,
+	collector collectors.OplogCollector,
+	log *logrus.Logger,
+) Replicator {
 	return &oplogReplicator{
 		oplogReader: oplogReader,
 		storage:     storage,

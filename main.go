@@ -27,5 +27,6 @@ func main() {
 	router := echo.New()
 	handlers.NewPrometheusHandler(router)
 	handlers.NewHealthHandler(router)
-	router.Start(":8080")
+
+	log.Fatal(router.Start(":8080"))
 }
