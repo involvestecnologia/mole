@@ -8,7 +8,7 @@ type StorageCollector struct {
 
 func NewStorageCollector() StorageCollector {
 
-	return StorageCollector{
+	collector := StorageCollector{
 		oplog_storage_counter: prometheus.NewCounter(
 			prometheus.CounterOpts{
 				Name: "oplog_storage_counter",
@@ -16,6 +16,9 @@ func NewStorageCollector() StorageCollector {
 			},
 		),
 	}
+
+	prometheus.MustRegister([]prometheus.Collector{collector.oplog_storage_counter}...)
+	return collector
 }
 
 func (s *StorageCollector) IncreasesStorageMetrics(records int) {

@@ -7,7 +7,7 @@ type OplogCollector struct {
 }
 
 func NewOplogCollector() OplogCollector {
-	return OplogCollector{
+	collector := OplogCollector{
 		oplog_reading_counter: prometheus.NewCounter(
 			prometheus.CounterOpts{
 				Name: "oplog_reading_counter",
@@ -15,6 +15,9 @@ func NewOplogCollector() OplogCollector {
 			},
 		),
 	}
+
+	prometheus.MustRegister([]prometheus.Collector{collector.oplog_reading_counter}...)
+	return collector
 }
 
 func (o *OplogCollector) IncreasesReadingMetrics() {
