@@ -58,7 +58,7 @@ func (e *elasticsearch) Add(oplog *models.Oplog) error {
 
 	routing := resource.Timestamp.Format("02-01-2006")
 
-	meta := []byte(fmt.Sprintf(`{ "index" : { "_index" : "%s", "_type": "_doc", "_routing": "%s" } }%s`, e.source, routing, "\n"))
+	meta := []byte(fmt.Sprintf(`{"index":{"_index":"%s","_type":"_doc","_routing":"%s"}}%s`, e.source, routing, "\n"))
 	data, err := json.Marshal(&resource)
 	if err != nil {
 		return err
