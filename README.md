@@ -1,6 +1,7 @@
 [![Coverage Status](https://goreportcard.com/badge/github.com/involvestecnologia/mole)](https://goreportcard.com/report/github.com/involvestecnologia/mole)
 
 
+
 <img src="./icon.png" width="100" height="100">  
   
 # Mole
